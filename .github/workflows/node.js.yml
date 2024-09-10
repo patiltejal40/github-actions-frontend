@@ -34,8 +34,11 @@ jobs:
       - name: Set up JDK 11 # Required for SonarCloud
         uses: actions/setup-java@v3
         with:
-          distribution: "adopt"
-          java-version: "11.0.20"
+          distribution: "temurin"
+          java-version: "21"
+
+      - name: Set JAVA_HOME
+        run: echo "JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64" >> $GITHUB_ENV
 
       - name: Check Java version
         run: java -version
