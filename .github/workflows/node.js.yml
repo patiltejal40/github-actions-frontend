@@ -34,19 +34,19 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1
         with:
-          projectKey: patiltejal40_github-actions-frontend
-          organization: patiltejal40
-          token: ${{ secrets.SONAR_TOKEN }}
+          projectBaseDir: .
+      - env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: Log in to Docker Hub
+      #   uses: docker/login-action@v2
+      #   with:
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image
-        run: |
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          IMAGE_TAG=${{ secrets.DOCKER_USERNAME }}/github-actions-frontend:${TIMESTAMP}
-          docker build -t ${IMAGE_TAG} .
-          docker push ${IMAGE_TAG}
+      # - name: Build and push Docker image
+      #   run: |
+      #     TIMESTAMP=$(date +%Y%m%d%H%M%S)
+      #     IMAGE_TAG=${{ secrets.DOCKER_USERNAME }}/github-actions-frontend:${TIMESTAMP}
+      #     docker build -t ${IMAGE_TAG} .
+      #     docker push ${IMAGE_TAG}
