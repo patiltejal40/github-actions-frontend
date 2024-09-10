@@ -34,7 +34,7 @@ jobs:
       - name: Set up JDK 11 # Required for SonarCloud
         uses: actions/setup-java@v3
         with:
-          distribution: "temurin"
+          distribution: "adopt"
           java-version: "11.0.20"
 
       - name: Check Java version
