@@ -46,6 +46,8 @@ jobs:
       #     IMAGE_TAG=${{ secrets.DOCKER_USERNAME }}/github-actions-frontend:${TIMESTAMP}
       #     docker build -t ${IMAGE_TAG} .
       #     docker push ${IMAGE_TAG}
+      - name: Verify Azure CLI installation
+        run: az --version
 
       # Logs in with your Azure credentials
       - name: Azure login
