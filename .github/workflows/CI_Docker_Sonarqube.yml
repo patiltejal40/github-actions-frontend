@@ -40,7 +40,6 @@ jobs:
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
             -Dsonar.sources=src
-            -Dsonar.tests=test
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/coverage/**
             -Dsonar.branch.name=${{ github.ref_name }}
