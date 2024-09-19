@@ -31,9 +31,19 @@ jobs:
       - name: Checkout Github Branch
         uses: actions/checkout@v4
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
+        uses: SonarSource/sonarcloud-github-action@v3.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+            -Dsonar.sources=src
+            -Dsonar.tests=test
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/coverage/**
+            -Dsonar.branch.name=${{ github.ref_name }}
 
   Build-And-Push-Docker-Image:
     needs: SonarCloud-Scan
