@@ -8,13 +8,10 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application code
 COPY . .
-
-# Build the application (if applicable)
-# RUN npm run build
 
 # Use a new, smaller base image for the final stage
 FROM node:18.16.0-alpine
@@ -24,6 +21,9 @@ WORKDIR /app
 
 # Copy only the necessary files from the build stage
 COPY --from=build /app ./
+
+# Remove unnecessary files to reduce image size
+RUN rm -rf /app/test /app/docs /app/.git /app/node_modules/.cache
 
 # Expose the port the app runs on
 EXPOSE 3000
