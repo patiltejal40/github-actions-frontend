@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: nodejs-app
   namespace: basic-frontend
+  annotations:
+    pref.argocd.argoproj.io/default-view: pods
+    pref.argocd.argoproj.io/default-pod-sort: node
 spec:
   replicas: 1
   selector:
