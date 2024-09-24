@@ -21,6 +21,7 @@ spec:
           image: patiltejal40/github-actions-frontend:20240917055258
           ports:
             - containerPort: 3000
+              protocol: TCP
           livenessProbe:
             httpGet:
               path: /
